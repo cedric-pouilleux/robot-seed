@@ -1,5 +1,5 @@
 <template>
-	<div class="grid-cell" :style="style" :cell-size="size"></div>
+	<div class="grid-cell" :style="style"></div>
 </template>
 
 <script lang="ts">
@@ -15,7 +15,7 @@
 		readonly size: number = 20;
 
 		@Prop({ type: Number })
-		readonly color: string | null = null;
+		readonly color: string = "#000}";
 
 		@Prop()
 		readonly position!: UIPosition;
@@ -24,20 +24,20 @@
 			return {
 				width: this.size + "px",
 				height: this.size + "px",
-				backgroundColor: "#000000",
+				backgroundColor: this.color,
 			}
 		}
 
 	}
 </script>
 
-<style scoped type="scss">
+<style scoped lang="scss">
 	.grid-cell {
 		margin: 1px;
 		background-color: #000;
-	}
-	.grid-cell:hover {
-		opacity: 0.8;
-		cursor: pointer;
+		&:hover {
+			opacity: 0.8;
+			cursor: pointer;
+		}
 	}
 </style>

@@ -15,7 +15,7 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import {Cell, UICell, UIPosition} from "@/entities/Cell.ts";
+	import {Cell, UICell} from "@/entities/Cell.ts";
 	import GridCell from "@/components/GridCell.vue";
 
 	@Options({
@@ -32,8 +32,11 @@
 		@Prop({ type: Number, default: 9 })
 		readonly rows!: number;
 
-		@Prop({ type: Number, default: 9 })
+		@Prop({ type: Number, default: 3 })
 		readonly columns!: number;
+
+		@Prop({ type: Number, default: 20 })
+		readonly cellSize!: number;
 
 		mounted(): void{
 			const grid: UICell[][] = this.generateGrid();
@@ -41,23 +44,20 @@
 		}
 
 		generateGrid(): UICell[][] {
-			const grid: UICell[][] = [new Array(this.columns)];
-			for (let column = 0; column < this.columns; column++) {
-				grid[column] = [];
-				for (let row = 0; row < this.rows; row++) {
-					const position: UIPosition = {x: column, y: row};
-					const size: number = 20;
-					grid[column][row] = new Cell(size, position);
-				}
-			}
-			return grid;
+			return [...Array(this.rows)].map(column => {
+				return [...Array(this.columns)].map(row => {
+					return new Cell(this.cellSize, {x: column, y: row});
+				});
+			});
 		}
 
 	}
 </script>
 
-<style scoped>
-.grid > div {
-	display: flex;
-}
+<style scoped lang="scss">
+	.grid {
+		> div {
+			display: flex;
+		}
+	}
 </style>
