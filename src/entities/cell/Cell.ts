@@ -1,4 +1,5 @@
-import {UICell, UISeed, UIPosition} from "@/interfaces";
+import {UIPosition, UICell, UICellPayload} from './interfaces';
+import {UISeed} from '@/entities/seed/interfaces';
 
 export class Cell implements UICell {
 
@@ -6,9 +7,9 @@ export class Cell implements UICell {
 	position!: UIPosition;
 	type: UISeed | null = null;
 
-	constructor(size: number, position: UIPosition){
-		this.size = size!;
-		this.position = position!;
+	constructor(payload: UICellPayload){
+		this.size = payload.size;
+		this.position = payload.position!;
 	}
 
 	getColorType(): string | null {

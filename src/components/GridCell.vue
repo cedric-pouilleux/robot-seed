@@ -5,7 +5,7 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import { UICell } from "@/interfaces";
+	import { UICell } from "@/entities/cell/interfaces";
 
 	@Options({
 		name: 'GridCell'

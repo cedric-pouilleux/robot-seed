@@ -11,7 +11,7 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import SeedsFixtures from "@/fixtures/Seed.ts";
-	import Seed from "@/entities/Seed";
+	import Seed from "@/entities/seed/Seed";
 
 	@Options({
 		name: 'SeedSelector'

@@ -1,11 +1,11 @@
-import { UISeed, UISeedPayload } from "@/interfaces";
+import {UISeed, UISeedPayload} from './interfaces';
 
 export default class Seed implements UISeed{
 
 	readonly label!: string;
 	readonly color!: string;
-	readonly value?: string | undefined;
-	readonly growTime?: number | undefined;
+	readonly value: string;
+	readonly growTime: number;
 
 	constructor(params: UISeedPayload){
 		this.label = params.label;

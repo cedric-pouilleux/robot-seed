@@ -11,8 +11,7 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import { UICell } from "@/interfaces";
-	import { Cell } from "@/entities/Cell";
+	import { Cell } from "@/entities/cell/Cell";
 	import GridCell from "@/components/GridCell.vue";
 
 	@Options({
@@ -36,16 +35,19 @@
 		cellSize!: number;
 
 		mounted(): void{
-			const grid: UICell[][] = this.generateGrid();
+			const grid: Cell[][] = this.generateGrid();
 			this.$emit('update:modelValue', grid!);
 		}
 
-		generateGrid(): UICell[][] {
-			return [...Array(this.rows)].map(column => {
-				return [...Array(this.columns)].map(row => {
-					return new Cell(this.cellSize, {x: column, y: row});
-				});
-			});
+		generateGrid(): Cell[][] {
+			const rows = [...Array(this.rows)];
+			const columns = [...Array(this.columns)];
+			return rows.map(column =>
+				columns.map(row => new Cell({
+					size: this.cellSize,
+					position: {x: column, y: row}
+				}))
+			);
 		}
 
 	}
