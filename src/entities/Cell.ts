@@ -1,20 +1,4 @@
-export interface UIPosition {
-	x: number;
-	y: number;
-}
-
-export interface UISeed {
-	label: string;
-	value: string;
-	color: string;
-	growTime: number | null;
-}
-
-export interface UICell {
-	size: number;
-	position: UIPosition;
-	getColorType: () => string | null;
-}
+import {UICell, UISeed, UIPosition} from "@/interfaces";
 
 export class Cell implements UICell {
 

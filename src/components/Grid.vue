@@ -2,11 +2,7 @@
 	<div class="grid">
 		<div v-for="(rows, rowIndex) in modelValue" :key="rowIndex">
 			<template v-for="(cell, index) in rows" :key="index">
-				<grid-cell
-					:size="cell.size"
-					:color="cell.getColorType()"
-					:position="cell.position"
-				/>
+				<grid-cell :cell="cell" />
 			</template>
 		</div>
 	</div>
@@ -15,7 +11,8 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import {Cell, UICell} from "@/entities/Cell.ts";
+	import { UICell } from "@/interfaces";
+	import { Cell } from "@/entities/Cell";
 	import GridCell from "@/components/GridCell.vue";
 
 	@Options({
@@ -36,7 +33,7 @@
 		readonly columns!: number;
 
 		@Prop({ type: Number, default: 20 })
-		readonly cellSize!: number;
+		cellSize!: number;
 
 		mounted(): void{
 			const grid: UICell[][] = this.generateGrid();
@@ -56,8 +53,11 @@
 
 <style scoped lang="scss">
 	.grid {
+		width: 1200px;
+		margin: 0 auto;
 		> div {
 			display: flex;
+			justify-content: center;
 		}
 	}
 </style>

@@ -1,5 +1,9 @@
 <template>
-	<grid v-model="grid" :cell-size="40" />
+	<grid
+		v-model="grid"
+		:cell-size="40"
+		:rows="12"
+		:columns="24"/>
 </template>
 
 <script lang="ts">

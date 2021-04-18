@@ -5,26 +5,20 @@
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import { UIPosition } from "@/entities/Cell";
+	import { UICell } from "@/interfaces";
 
 	@Options({
 		name: 'GridCell'
 	})
 	export default class GridCell extends Vue {
-		@Prop({ type: Number })
-		readonly size: number = 20;
-
-		@Prop({ type: Number })
-		readonly color: string = "#000}";
-
 		@Prop()
-		readonly position!: UIPosition;
+		private cell!: UICell;
 
 		get style(){
 			return {
-				width: this.size + "px",
-				height: this.size + "px",
-				backgroundColor: this.color,
+				width: this.cell.size + "px",
+				height: this.cell.size + "px",
+				backgroundColor: this.cell.type?.color
 			}
 		}
 
@@ -35,6 +29,7 @@
 	.grid-cell {
 		margin: 1px;
 		background-color: #000;
+		border-radius: 4px;
 		&:hover {
 			opacity: 0.8;
 			cursor: pointer;
