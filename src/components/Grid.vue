@@ -55,8 +55,6 @@
 
 <style scoped lang="scss">
 	.grid {
-		width: 1200px;
-		margin: 0 auto;
 		> div {
 			display: flex;
 			justify-content: center;

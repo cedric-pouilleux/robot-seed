@@ -1,5 +1,6 @@
 <template>
 	<div class="seed-selector">
+		{{ seeds }}
 		<ul>
 			<li v-for="seed in seeds" :key="seed.value">
 				{{ seed.label }}
@@ -20,8 +21,7 @@
 
 		private seeds!: Seed[] | null;
 
-		mounted(): void{
-			console.log(SeedsFixtures);
+		created(): void{
 			this.seeds = SeedsFixtures;
 		}
 
