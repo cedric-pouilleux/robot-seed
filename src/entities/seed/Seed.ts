@@ -5,16 +5,15 @@ export default class Seed implements UISeed {
 
 	readonly label!: string;
 	readonly color!: string;
-	readonly value: string;
-	readonly growTime: number;
-	readonly categories: SeedCategory[] = [];
+	readonly value!: string;
+	readonly growTime!: number;
+	readonly categories!: SeedCategory[];
 
 	constructor(params: UISeedPayload){
 		this.label = params.label;
 		this.value = params.label;
 		this.color = params.color;
 		this.growTime = 0;
-		console.log(params);
 		this.categories = params.categories;
 	}
 

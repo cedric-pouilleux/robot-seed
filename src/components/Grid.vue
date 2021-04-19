@@ -1,18 +1,25 @@
 <template>
-	<div class="grid">
-		<div v-for="(rows, rowIndex) in modelValue" :key="rowIndex">
+	<el-card class="box-card">
+		<template #header>
+			<div class="card-header">
+				<h4>{{ title }}</h4>
+				<p class="date">{{ dateString }}</p>
+				<p>test count</p>
+			</div>
+		</template>
+		<div class="grid" v-for="(rows, rowIndex) in grid" :key="rowIndex">
 			<template v-for="(cell, index) in rows" :key="index">
 				<grid-cell :cell="cell" />
 			</template>
 		</div>
-	</div>
+	</el-card>
 </template>
 
 <script lang="ts">
-	import { Options, Vue } from "vue-class-component";
-	import { Prop } from "vue-property-decorator";
-	import { Cell } from "@/entities/cell/Cell";
-	import GridCell from "@/components/GridCell.vue";
+	import { Options, Vue } from 'vue-class-component';
+	import { Prop } from 'vue-property-decorator';
+	import { Cell } from '@/entities/cell/Cell';
+	import GridCell from '@/components/GridCell.vue';
 
 	@Options({
 		name: 'Grid',
@@ -22,8 +29,11 @@
 	})
 	export default class Grid extends Vue {
 
-		@Prop({ type: Array })
-		readonly modelValue!: [];
+		@Prop({ type: String })
+		readonly title: string = '';
+
+		@Prop({ type: Date })
+		readonly createdAt!: Date;
 
 		@Prop({ type: Number, default: 9 })
 		readonly rows!: number;
@@ -32,11 +42,12 @@
 		readonly columns!: number;
 
 		@Prop({ type: Number, default: 20 })
-		cellSize!: number;
+		readonly cellSize!: number;
 
-		mounted(): void{
-			const grid: Cell[][] = this.generateGrid();
-			this.$emit('update:modelValue', grid!);
+		private grid: Cell[][] = this.generateGrid();
+
+		get dateString(): string {
+			return this.createdAt.toISOString().split('T')[0];
 		}
 
 		generateGrid(): Cell[][] {
@@ -54,10 +65,18 @@
 </script>
 
 <style scoped lang="scss">
-	.grid {
-		> div {
-			display: flex;
-			justify-content: center;
+	.el-card {
+		&__header {
+			padding: 0 20px;
 		}
+	}
+
+	.card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.grid {
+		display: flex;
 	}
 </style>

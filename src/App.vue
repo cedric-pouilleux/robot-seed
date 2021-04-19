@@ -8,10 +8,17 @@
 				</el-aside>
 				<el-main>
 					<grid
-						v-model="grid"
+						title="Salade #1"
+						:created-at="new Date()"
 						:cell-size="40"
-						:rows="12"
-						:columns="24"/>
+						:rows="6"
+						:columns="9"/>
+					<grid
+						title="Salade"
+						:created-at="new Date()"
+						:cell-size="40"
+						:rows="4"
+						:columns="6"/>
 				</el-main>
 			</el-container>
 		</el-container>
@@ -33,7 +40,6 @@
 		}
 	})
 	export default class App extends Vue {
-		private grid: [] = [];
 	}
 </script>
 
