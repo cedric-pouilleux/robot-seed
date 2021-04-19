@@ -1,16 +1,21 @@
 <template>
-	<div class="grid-cell" :style="style"></div>
+	<div
+		class="grid-cell"
+		:style="style"
+		@click="$emit('select', cell)">
+	</div>
 </template>
 
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
 	import { Prop } from "vue-property-decorator";
-	import { UICell } from "@/entities/cell/interfaces";
+	import { UICell } from "@/entities/Cell";
 
 	@Options({
 		name: 'GridCell'
 	})
 	export default class GridCell extends Vue {
+
 		@Prop()
 		private cell!: UICell;
 

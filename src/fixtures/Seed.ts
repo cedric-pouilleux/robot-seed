@@ -1,5 +1,5 @@
-import Seed from '@/entities/seed/Seed.ts';
-import SeedCategory from "@/entities/seed/SeedCategory";
+import {Seed} from '@/entities/Seed.ts';
+import {SeedCategory} from "@/entities/SeedCategory";
 
 const categoryBranch = new SeedCategory({ label: 'Branch' });
 const categoryFruit = new SeedCategory({ label: 'Fruit' });
