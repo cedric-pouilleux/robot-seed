@@ -27,6 +27,7 @@
 
 <script lang="ts">
 	import { Options, Vue } from "vue-class-component";
+	import firebase from "firebase/app";
 	import Grid from '@/components/Grid.vue';
 	import SeedResume from '@/components/SeedResume.vue';
 	import SeedSelector from '@/components/SeedSelector.vue';
@@ -40,6 +41,9 @@
 		}
 	})
 	export default class App extends Vue {
+		mounted(){
+			console.log(firebase);
+		}
 	}
 </script>
 
